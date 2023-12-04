@@ -4,8 +4,26 @@
 
 <h1>The iframe element 4</h1>
 
-<iframe src="https://optimaldev.service-now.com/dsp?id=dsp_request" width="1200" height="600">
+<iframe id="myframe" src="https://optimaldev.service-now.com/login_with_sso.do?glide_sso_id=76cc16a0879e78d4303c75d8cebb354f" width="1200" height="600">
 </iframe>
+
+<script>
+    var iframeUrl = "https://optimaldev.service-now.com/login_with_sso.do?glide_sso_id=76cc16a0879e78d4303c75d8cebb354f";
+
+    // Esta função será chamada quando o iframe for carregado
+    function onIframeLoad() {
+        if (window.frames['myframe'] && !window.userSet) {
+            window.userSet = true;
+            // Verifica se o iframe já tem a URL correta
+            if (frames['myframe'].location.href !== iframeUrl) {
+                frames['myframe'].location.href = iframeUrl;
+            }
+        }
+    }
+
+    // Adiciona o event listener para o carregamento do iframe
+    document.getElementById('myframe').addEventListener('load', onIframeLoad);
+</script>
 
 </body>
 </html>
